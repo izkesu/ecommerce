@@ -16,6 +16,7 @@ namespace ecommerce.Controllers
         ecommerceEntities db = new ecommerceEntities();
         // GET: admin
         [HttpGet]
+
         public ActionResult login()
         {
             return View();
@@ -73,7 +74,7 @@ namespace ecommerce.Controllers
 
 public ActionResult viewcategory(int? page)
 {
-    int pagesize = 7, pageindex = 1;
+    int pagesize = 9, pageindex = 1;
     pageindex = page.HasValue ? Convert.ToInt32(page) : 1;
     var list = db.tbl_category.OrderByDescending(x=>x.cat_id).ToList();//whenever the new category is added it will added on the top
     IPagedList<tbl_category> stu = list.ToPagedList(pageindex, pagesize);

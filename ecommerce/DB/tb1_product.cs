@@ -14,6 +14,8 @@ namespace ecommerce.DB
     
     public partial class tb1_product
     {
+        internal int pro_fk_user;
+
         public int pro_id { get; set; }
         public string pro_name { get; set; }
         public string pro_image { get; set; }

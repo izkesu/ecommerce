@@ -12,6 +12,7 @@ namespace ecommerce.Controllers
     public class userController : Controller
     {
         ecommerceEntities db = new ecommerceEntities();
+
         public ActionResult Index(int ?page)
         {
             int pagesize = 7, pageindex = 1;
@@ -24,7 +25,7 @@ namespace ecommerce.Controllers
 
 
 
-
+-
 
         public ActionResult signup()
         {
@@ -104,6 +105,8 @@ namespace ecommerce.Controllers
 
         public ActionResult createad()
         {
+            List<tbl_category> li = db.tbl_category.ToList();
+            ViewBag.categorylist = new SelectList(li, "cat_id", "cat_name");
             return View();
         }
 
@@ -112,8 +115,29 @@ namespace ecommerce.Controllers
 
 
         [HttpPost]
-        public ActionResult createad(tb1_user1 cvm)
+        public ActionResult createad(tb1_product pvm, HttpPostedFileBase imgfile)
         {
+
+            string path = Uploadimgfile(imgfile);
+            if (path.Equals("-1"))
+            {
+                ViewBag.error = "Image could not be uploaded....";
+            }
+            else
+            {
+                tb1_product p = new tb1_product();
+                p.pro_name = pvm.pro_name;
+                p.pro_price = pvm.pro_price;
+                p.pro_des = pvm.pro_des;
+                p.pro_image = path;
+                p.pro_fk_cat = pvm.pro_fk_cat;
+                p.pro_fk_user = Convert.ToInt32(Session["u_id"].ToString());
+                db.tb1_product.Add(p);
+                db.SaveChanges();
+                Response.Redirect("Index");
+
+            }
+
             return View();
         }
 
@@ -121,9 +145,7 @@ namespace ecommerce.Controllers
 
 
 
-
-
-        public string Uploadimgfile(HttpPostedFileBase File)
+            public string Uploadimgfile(HttpPostedFileBase File)
         {
 
 

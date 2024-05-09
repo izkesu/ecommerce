@@ -177,6 +177,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\tb1_admn.cs" />
+    <Compile Include="Models\tb1_product.cs" />
     <Compile Include="Models\tb1_user1.cs" />
     <Compile Include="Models\tbl_category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\user\signup.cshtml" />
     <Content Include="Views\user\userlogin.cshtml" />
     <Content Include="Views\user\createad.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

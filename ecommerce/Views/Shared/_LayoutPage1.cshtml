@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        .na {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="">
+        <div class="container-fluid">
+            <div class"navbar-header">
+                <a class="navbar-brand" href="#">Keshav singh</a>
+            </div>
+            <ul class"nav navbar-nav">
+                <li>@Html.ActionLink("Category", "Index", "user", null, new { @class = "ht" })</li>
+                <li>
+                    @if (Session["u_id"] != null)
+                    {
+                        @Html.ActionLink("Post An Ad", "createad", "user", null, new { @class = "ht" })
+                    }
+                </li>
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Sign In", "login", "user", null, new { @class = "ht" })
+
+                    }
+                </li>
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Sign Up", "signup", "user", null, new { @class = "ht" })
+
+                    }
+                </li>
+            </ul>  
+
+        </div>
+    </nav>
+</body>
+</html>
